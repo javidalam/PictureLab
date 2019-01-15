@@ -108,8 +108,30 @@ public class Picture extends SimplePicture
       }
     }
   }
-  public int negate() {
-
+  public void negate() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(255-pixelObj.getBlue());
+        pixelObj.setRed(255-pixelObj.getRed());
+        pixelObj.setGreen(255-pixelObj.getGreen());
+      }
+    }
+  }
+  public void greyscale() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int mean = (pixelObj.getBlue() + pixelObj.getRed() + pixelObj.getGreen())/3;
+        pixelObj.setBlue(mean);
+        pixelObj.setRed(mean);
+        pixelObj.setGreen(mean);
+      }
+    }
   }
   
   /** Method that mirrors the picture around a 
